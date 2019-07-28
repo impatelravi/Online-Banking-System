@@ -1,0 +1,349 @@
+#!C:\Python\Python27\python.exe -u
+	
+print "Content-type:text/html\r\n\r\n"
+import cgi, cgitb, MySQLdb, re
+form = cgi.FieldStorage() 
+cgitb.enable()
+
+d=form.getvalue('d')
+db = MySQLdb.connect("localhost","root","","banking" )
+cursor=db.cursor()
+sql = ("SELECT firstname FROM reg WHERE `accno`='%s'"%(d))
+result = cursor.execute(sql)
+data=cursor.fetchone()
+data1=str(data[0])
+print '''
+
+<html lang="en">
+<head>
+<title>Corporate Bank a Banking Category Bootstrap responsive Website Template | Home :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="keywords" content="Corporate Bank a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<!-- .css files -->
+	<link href="css/bars.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/font-awesome.css" />
+<!-- //.css files -->
+<!-- Default-JavaScript-File -->
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- //Default-JavaScript-File -->
+<!-- fonts -->
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Ropa+Sans:400,400i&amp;subset=latin-ext" rel="stylesheet">
+<!-- //fonts -->
+<!-- scrolling script -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- //scrolling script -->
+</head>
+<body>
+<div class="top-main">
+		<div class="number">
+			<h3><i class="fa fa-phone" aria-hidden="true"></i> +91-9974421198</h3>
+			<div class="clearfix"></div>
+		</div>
+		<div class="social-icons">
+		<ul class="top-icons">
+			<li><a href="https://www.facebook.com/impatelravi"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+			<li><a href="https://twitter.com/officialpravi"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+			<li><a href="https://plus.google.com/u/0/116133161153308173208"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+			<li><a href="https://www.instagram.com/impatelravi/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+		</ul>
+		<div class="clearfix"></div>
+		</div>
+			<div class="clearfix"></div>
+	</div>
+	<!-- Top-Bar -->
+	<div class="top-bar">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="home.py">home</a></li>
+							<li><a href="home.py?d=%s" class="scroll">services</a></li>'''%(d)
+print '''
+							<li><a href="home.py#skills">skills</a></li>
+							<!--<li><a href="#team">team</a></li>-->
+							<li><a href="home.py#payment">payment</a></li>
+							<!--<li><a href="#blog">blog</a></li>-->
+							<li><a href="home.py#about">about</a></li>
+							<li><a href="home.py#contact">contact</a></li>
+							<li><a href="../index.py">Logout</a></li>
+							<li><a>Hi %s</a></li>'''%(data1)
+print '''
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="logo">
+		<a href="index.html"><!--<i class="fa fa-inr" aria-hidden="true"></i>-->Bank of <span>PATIDAR</span></a>
+	</div>
+	<!-- services -->
+<section class="services" id="services">
+	<div class="container">
+		<div class="services-heading">
+			<h3>services</h3>
+		</div>
+		<div class="service-grids">
+			<div class="service-grid-top">
+				<a href="ft.py?d=%s">'''%(d)
+print '''			<div class="col-md-4 service-grid-1">
+						<div class="service-grid-text">
+							<div class="icon">
+								<i class="fa fa-usd" aria-hidden="true"></i>
+							</div>
+							<h4>Fund Trasfer</h4>
+						</div>
+					</div>
+				</a>
+				<a href="bal.py?d=%s">'''%(d)
+print '''			<div class="col-md-4 service-grid-1">
+						<div class="service-grid-text">
+							<div class="icon">
+								<i class="fa fa-money" aria-hidden="true"></i>
+							</div>
+							<h4>Balance Inquiry</h4>
+						</div>
+					</div>
+				</a>
+				<a href="../table/passbook.py?d=%s">'''%(d)
+print '''			<div class="col-md-4 service-grid-1">
+						<div class="service-grid-text">
+							<div class="icon">
+								<i class="fa fa-book" aria-hidden="true"></i>
+							</div>
+							<h4>Passbook</h4>
+						</div>
+					</div>
+				</a>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- //services -->
+<!-- clients -->
+<section class="skills" id="skills">
+	<div class="container">
+		<div class="skills-heading">
+			<h3>Our growth</h3>
+		</div>
+		<div class="col-md-2 career-growth">
+			<h4>2017 :</h4>
+			<h4>2015 :</h4>
+			<h4>2011 :</h4>
+			<h4>2006 :</h4>
+			<h4>2001 :</h4>
+		</div>
+		<section class='col-md-10 bar'>
+			  <div class='bar_group'>
+				<div class='bar_group__bar thin' value='675'></div>
+				<div class='bar_group__bar thin' value='500'></div>
+				<div class='bar_group__bar thin' value='420'></div>
+				<div class='bar_group__bar thin' value='343'></div>
+				<div class='bar_group__bar thin' value='245'></div>
+			  </div>
+			<div class='clearfix'></div>
+		</section>
+			<div class='clearfix'></div>
+	</div>
+</section>
+<!--clients -->
+<!-- payment -->
+<section class="payment jarallax" id="payment">
+	<div class="container">
+		<div class="payments-heading">
+			<h3>Our Payments</h3>
+		</div>
+		<div class="payment-grids">
+		<div class="col-md-3 payment-grid">
+			<i class="fa fa-cc-visa" aria-hidden="true"></i>
+			<h5>visa card</h5>
+		</div>
+		<div class="col-md-3 payment-grid">
+			<i class="fa credit fa-credit-card-alt" aria-hidden="true"></i>
+			<h5>credit card</h5>
+		</div>
+		<div class="col-md-3 payment-grid">
+			<i class="fa fa-cc-mastercard" aria-hidden="true"></i>
+			<h5>master card</h5>
+		</div>
+		<div class="col-md-3 payment-grid">
+			<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+			<h5>debit card</h5>
+		</div>
+		<div class="clearfix"></div>
+		</div>
+	</div>
+</section>
+<!-- //payment -->
+<!-- modal -->
+	<div class="modal about-modal fade" id="myModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> 
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="span1"aria-hidden="true">&times;</span></button>						
+						<h4 class="modal-title"> Bank of <span>PATIDAR</span></h4>
+					</div> 
+					<div class="modal-body">
+					<div class="agileits-w3layouts-info">
+						<img src="images/business.jpg" alt="" />
+						<p>sdsfsdfsd Duis venenatis, turpis eu bibendum porttitor, sapien quam ultricies tellus, ac rhoncus risus odio eget nunc. Pellentesque ac fermentum diam. Integer eu facilisis nunc, a iaculis felis. Pellentesque pellentesque tempor enim, in dapibus turpis porttitor quis. Suspendisse ultrices hendrerit massa. Nam id metus id tellus ultrices ullamcorper.  Cras tempor massa luctus, varius lacus sit amet, blandit lorem. Duis auctor in tortor sed tristique. Proin sed finibus sem.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- //modal -->
+<!-- about -->
+<section class="about" id="about">
+	<div class="container">
+	<div class="about-heading">
+		<h2>About</h2>
+	</div>
+		<div class="about-grids">
+		<div class="col-md-6 about-left">
+			<img src="images/1.jpg" alt="" />
+		</div>
+		<div class="col-md-6 about-right">
+			<h3>Bank of PATIDAR is India's largest bank with a network of over 25000 branches located even in the remotest parts of India.</h3>
+			<p>Bank of PATIDAR (BOP) offers a wide range of banking products and services to corporate and retail customers.</p>
+			<p>OnlineBOP is the Internet banking portal for Bank of PATIDAR. The portal provides anywhere, anytime, online access to accounts for State Bank's Retail and Corporate customers. The application is developed using the latest cutting edge technology and tools. The infrastructure supports unified, secure access to banking services for accounts in over 25,000 branches across India.</p>
+			<div class="more">
+				<a href="#" data-toggle="modal" data-target="#myModal">Read More</a>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		</div>
+		</div>
+</section>
+<!-- //about -->
+<!-- contact -->
+<section class="contact" id="contact">
+	<div class="container">
+		<div class="contact-heading">
+			<h3>Contact us</h3>
+		</div>
+		<div class="contact-grids">
+			<div class=" col-md-6 contact-form">
+				<form action="#" method="post">
+						<input type="text" placeholder="Subject" required=""/>
+						<input type="text" placeholder="Your name" required=""/>
+						<input type="email" placeholder="Your mail" required=""/>
+						<textarea placeholder="Message" required=""></textarea>
+						<div class="submit1">
+							<input type="submit" value="submit">
+						</div>
+				</form>
+			</div>
+			<div class=" col-md-6 map">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.0893798090037!2d72.4555422494509!3d23.529287484623744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c476c5013fd03%3A0xa1fe01d9ab30482!2sGanpat+University!5e0!3m2!1sen!2sin!4v1541829161889"></iframe>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</section>
+<!-- //contact -->
+<!-- footer -->
+<section class="footer">
+	<div class="container">
+		<div class="footer-grids">
+			<div class="col-md-4 footer-grid1">
+				<div class="logo1">
+					<a href="index.html">Bank of <span>PATIDAR</span></a>
+				</div>
+				<p> Bank of PATIDAR is India's largest bank with a network of over 25000 branches located even in the remotest parts of India.</p>
+				<p> Bank of PATIDAR (BOP) offers a wide range of banking products and services to corporate and retail customers.</p>
+			</div>
+			<div class="col-md-3 footer-grid2">
+				<h4>Locations</h4>
+				<p class="p1">Ahmedabad</p>
+				<p>Nikol Branch</p>
+				<p class="p1">Mehsana</p>
+				<p>Ganpat University Branch</p>
+				<p class="p1">Surat</p>
+				<p>Patel Nagar Brach</p>
+			</div>
+			<div class="col-md-2 footer-grid3">
+				<h4>menu</h4>
+					<p><a href="#index.html" class="scroll">home</a></p>
+					<p><a href="#services" class="scroll">services</a></p>
+					<p><a href="#skills" class="scroll">skills</a></p>
+					<!--<p><a href="#team" class="scroll">team</a></p>-->
+					<p><a href="#payment" class="scroll">payment</a></p>
+					<!--<p><a href="#blog" class="scroll">blog</a></p>-->
+					<p><a href="#about" class="scroll">about</a></p>
+					<p><a href="#contact" class="scroll">contact</a></p>
+			</div>
+			<div class="col-md-3 footer-grid4">
+				<h4>our links</h4>
+				<p><a href="#">Funds transfer</a></p>
+				<p><a href="#">Internet online banking</a></p>
+				<p><a href="#">Balance enquiry</a></p>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</section>
+<!-- //footer -->
+<!-- copyright -->
+<section class="copyright">
+	<div class="agileits_copyright text-center">
+			<p>&copy; Bank of PATIDAR. All rights reserved</p>
+	</div>
+</section>
+<!-- //copyright -->
+<script src="js/jarallax.js"></script>
+	<script src="js/SmoothScroll.min.js"></script>
+	<script type="text/javascript">
+		/* init Jarallax */
+		$('.jarallax').jarallax({
+			speed: 0.5,
+			imgWidth: 1366,
+			imgHeight: 768
+		})
+	</script>
+
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	
+	<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+	<!-- //here ends scrolling icon -->
+	<script src="js/bars.js"></script>
+</body>
+</html> '''
